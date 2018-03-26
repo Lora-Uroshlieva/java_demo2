@@ -3,13 +3,12 @@ package com.softserve.edu.pages.modules;
 import com.softserve.edu.data.Categories;
 import com.softserve.edu.pages.SearchPage;
 import com.softserve.edu.pages.utils.ConciseAPI;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class ExtendedSearchBlock extends ConciseAPI {
-    public ExtendedSearchBlock(WebDriver driver) {
-        super(driver);
+    public ExtendedSearchBlock() {
+        super();
     }
 
     private final String SEARCH_FIELD_BY_CSS = "#input-search";
@@ -44,6 +43,6 @@ public class ExtendedSearchBlock extends ConciseAPI {
 
     public SearchPage clickSearchButton() {
         $(SEARCH_BUTTON_BY_CSS).click();
-        return new SearchPage(driver);
+        return new SearchPage();
     }
 }

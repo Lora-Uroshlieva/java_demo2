@@ -3,13 +3,12 @@ package com.softserve.edu.pages.modules;
 import com.softserve.edu.data.ProductsLimitOnPage;
 import com.softserve.edu.data.SortingType;
 import com.softserve.edu.pages.utils.RegexUtils;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class SearchResultsBlock extends FeaturedBlock {
-    public SearchResultsBlock(WebDriver driver) {
-        super(driver);
+    public SearchResultsBlock() {
+        super();
     }
 
     private final String PRODUCT_COMPARE_LINK_BY_CSS = "#compare-total";

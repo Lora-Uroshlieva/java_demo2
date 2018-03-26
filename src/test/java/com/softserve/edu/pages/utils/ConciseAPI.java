@@ -1,5 +1,6 @@
 package com.softserve.edu.pages.utils;
 
+import com.softserve.edu.pages.Application;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,19 +13,15 @@ public class ConciseAPI {
     public WebDriver driver;
     private WebDriverWait myWait;
 
-    public ConciseAPI(WebDriver driver) {
-        this.driver = driver;
+    public ConciseAPI() {
+        this.driver = Application.get().getBrowser().getDriver();
         this.myWait = new WebDriverWait(this.driver, 10);
     }
+
 
     public WebElement $(String cssSelector) {
         return myWait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.cssSelector(cssSelector)));
-    }
-
-    public List<WebElement> $$(String cssSelector) {
-        return myWait.until(ExpectedConditions
-                .visibilityOfAllElementsLocatedBy(By.cssSelector(cssSelector)));
     }
 
     public WebElement findByXpath(String xpath) {
@@ -32,34 +29,17 @@ public class ConciseAPI {
                 .visibilityOfElementLocated(By.xpath(xpath)));
     }
 
+    public List<WebElement> $$(String cssSelector) {
+        return myWait.until(ExpectedConditions
+                .visibilityOfAllElementsLocatedBy(By.cssSelector(cssSelector)));
+    }
+
     public WebElement findElementInLayoutByCss(WebElement layoutElement, String cssSelector) {
         return myWait.until(ExpectedConditions.visibilityOf(layoutElement
                 .findElement(By.cssSelector(cssSelector))));
     }
-    //TODO move in separate class
-    public boolean isTextEqual(String text1, String text2) {
-        return text1.toLowerCase().trim().equals(text2.toLowerCase().trim());
-    }
 
-    public boolean isArraySortedByAsc(List<Double> array) {
-        boolean result = true;
-        for (int i = 0; i < array.size()-1; i++) {
-            if (array.get(i) > array.get(i+1)) {
-                result = false;
-                break;
-            }
-        }
-        return result;
-    }
-
-    public boolean isArraySortedByDesc(List<Double> array) {
-        boolean result = true;
-        for (int i = 0; i < array.size()-1; i++) {
-            if (array.get(i) < array.get(i+1)) {
-                result = false;
-                break;
-            }
-        }
-        return result;
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
     }
 }

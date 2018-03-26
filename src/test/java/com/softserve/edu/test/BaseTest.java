@@ -1,5 +1,7 @@
 package com.softserve.edu.test;
 
+import com.softserve.edu.data.applications.ApplicationSourceRepository;
+import com.softserve.edu.pages.Application;
 import com.softserve.edu.test.helpers.Listener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,17 +12,14 @@ import org.testng.annotations.Listeners;
 @Listeners(Listener.class)
 
 public class BaseTest {
-    static WebDriver driver;
 
     @BeforeClass
     public void setupClass() {
-        System.setProperty("webdriver.chrome.driver",
-                "C:/Program Files/Java/Selenium/chromedriver.exe");
-        driver = new ChromeDriver();
+        Application.get(ApplicationSourceRepository.OpencarttChrome());
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void tearDown() {
-        driver.quit();
+        Application.remove();
     }
 }

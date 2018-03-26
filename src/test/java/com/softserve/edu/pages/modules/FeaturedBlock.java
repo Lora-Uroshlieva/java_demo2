@@ -1,10 +1,9 @@
 package com.softserve.edu.pages.modules;
 
 import com.softserve.edu.pages.utils.ConciseAPI;
+import com.softserve.edu.pages.utils.Helpers;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,14 +11,14 @@ public class FeaturedBlock extends ConciseAPI {
     private List<ProductComponent> productComponents;
     private final String PRODUCT_LAYOUT_BY_CSS = ".product-layout";
 
-    public FeaturedBlock(WebDriver driver) {
-        super(driver);
+    public FeaturedBlock() {
+        super();
     }
 
     private void initProductComponents() {
-        productComponents = new ArrayList<ProductComponent>();
+        productComponents = new ArrayList<>();
         for (WebElement currentElement: $$(PRODUCT_LAYOUT_BY_CSS)) {
-            productComponents.add(new ProductComponent(driver, currentElement));
+            productComponents.add(new ProductComponent(currentElement));
         }
     }
 
@@ -35,7 +34,7 @@ public class FeaturedBlock extends ConciseAPI {
     public ProductComponent getProductComponentByName(String productName) {
         ProductComponent result = null;
         for (ProductComponent current: getProductComponents()) {
-            if(isTextEqual(current.getNameText(), productName)) {
+            if(Helpers.isTextEqual(current.getNameText(), productName)) {
                 result = current;
                 break;
             }
@@ -47,7 +46,7 @@ public class FeaturedBlock extends ConciseAPI {
     }
 
     public List<String> getAllProductComponentsNames() {
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
         for (ProductComponent current: getProductComponents()) {
             result.add(current.getNameText());
         }

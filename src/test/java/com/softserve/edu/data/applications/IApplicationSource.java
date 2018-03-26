@@ -8,4 +8,6 @@ public interface IApplicationSource {
 
     String getBaseUrl();
 
+    String getSearchPageUrl();
+
 }

@@ -32,7 +32,6 @@ public final class RegexUtils {
         if (!extractText.isEmpty()) {
             try {
                 result = Integer.parseUnsignedInt(extractText);
-
             } catch (NumberFormatException e) {
                 // TODO Develop Custom Exception
                 throw new RuntimeException(String.format(EXTRACT_NUMBER_MESSAGE, PATTERN_UNSIGNED_NUMBER, text));
@@ -58,15 +57,4 @@ public final class RegexUtils {
         }
         return result;
     }
-
-    public static List<Integer> extractAllNumbers(String text) {
-        List<Integer> result = new ArrayList<>();
-        Pattern pattern = Pattern.compile(PATTERN_UNSIGNED_NUMBER);
-        Matcher matcher = pattern.matcher(text);
-        while (matcher.find()) {
-            result.add(Integer.parseInt(matcher.group()));
-        }
-        return result;
-    }
-
 }

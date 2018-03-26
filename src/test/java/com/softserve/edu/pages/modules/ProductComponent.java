@@ -2,7 +2,6 @@ package com.softserve.edu.pages.modules;
 
 import com.softserve.edu.pages.utils.ConciseAPI;
 import com.softserve.edu.pages.utils.RegexUtils;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class ProductComponent extends ConciseAPI {
@@ -15,8 +14,8 @@ public class ProductComponent extends ConciseAPI {
     private final String COMPARE_BY_CSS = ".fa.fa-exchange";
     private final String CLASS_ATTRIBUTE = "class";
 
-    public ProductComponent(WebDriver driver, WebElement productLayout) {
-        super(driver);
+    public ProductComponent(WebElement productLayout) {
+        super();
         this.productLayout = productLayout;
         verifyWebElements();
     }

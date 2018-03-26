@@ -6,37 +6,27 @@ import com.softserve.edu.data.SortingType;
 import com.softserve.edu.pages.modules.ExtendedSearchBlock;
 import com.softserve.edu.pages.modules.Header;
 import com.softserve.edu.pages.modules.SearchResultsBlock;
-import com.softserve.edu.pages.utils.ConciseAPI;
+import com.softserve.edu.pages.utils.Helpers;
 import org.openqa.selenium.WebDriver;
 
-public class SearchPage extends ConciseAPI {
+public class SearchPage {
 
     private Header header;
     private ExtendedSearchBlock extendedSearchBlock;
-    protected SearchResultsBlock searchResultsBlock;
+    private SearchResultsBlock searchResultsBlock;
+    private final String LIST_LAYOUT_CLASS = "product-list";
+    private final String GRID_LAYOUT_CLASS = "product-grid";
+    protected WebDriver driver;
 
     public SearchResultsBlock getSearchResultsBlock() {
         return searchResultsBlock;
     }
 
-    public static String getURL() {
-        return URL;
-    }
-
-    private final static String URL = "http://opencartt.rf.gd/index.php?route=product/search";
-    private final String LIST_LAYOUT_CLASS = "product-list";
-    private final String GRID_LAYOUT_CLASS = "product-grid";
-
-    public static SearchPage load(WebDriver driver) {
-        driver.get(URL);
-        return new SearchPage(driver);
-    }
-
-    public SearchPage(WebDriver driver) {
-        super(driver);
-        this.header = new Header(this.driver);
-        this.extendedSearchBlock = new ExtendedSearchBlock(this.driver);
-        this.searchResultsBlock = new SearchResultsBlock(this.driver);
+    public SearchPage() {
+        this.driver = Application.get().getBrowser().getDriver();
+        this.header = new Header();
+        this.extendedSearchBlock = new ExtendedSearchBlock();
+        this.searchResultsBlock = new SearchResultsBlock();
     }
 
     public SearchPage makeExtendedSearch(String keyWord, Categories category) {
@@ -45,6 +35,10 @@ public class SearchPage extends ConciseAPI {
                 .selectCategory(category)
                 .clickSelectInDescriptionsCheckbox()
                 .clickSearchButton();
+    }
+
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
     }
 
     public void displayProductsAsList() {
@@ -57,17 +51,17 @@ public class SearchPage extends ConciseAPI {
 
     public SearchPage sortProducts(SortingType type) {
         searchResultsBlock.selectSortingType(type);
-        return new SearchPage(driver);
+        return new SearchPage();
     }
 
     public  SearchPage changeProductsLimitOnPage(ProductsLimitOnPage limit) {
         searchResultsBlock.selectQuantityOnPage(limit);
-        return new SearchPage(driver);
+        return new SearchPage();
     }
 
     public SearchPage moveToNextSearchResultsPage() {
         searchResultsBlock.clickNextSearchResultsPage();
-        return new SearchPage(driver);
+        return new SearchPage();
     }
 
     public int countProductsFound() {
@@ -85,18 +79,18 @@ public class SearchPage extends ConciseAPI {
     }
 
     public boolean isPricesSortedByAsc() {
-        return isArraySortedByAsc(searchResultsBlock.getAllProductsPricesAmounts());
+        return Helpers.isArraySortedByAsc(searchResultsBlock.getAllProductsPricesAmounts());
     }
 
     public boolean isPricesSortedByDesc() {
-        return isArraySortedByDesc(searchResultsBlock.getAllProductsPricesAmounts());
+        return Helpers.isArraySortedByDesc(searchResultsBlock.getAllProductsPricesAmounts());
     }
 
-    public boolean isProductsDisplayedByList() {
+    public boolean isProductDisplayedAsList() {
         return searchResultsBlock.checkClassPresenceInProductComponent(LIST_LAYOUT_CLASS);
     }
 
-    public boolean isProductsDisplayedByGrid() {
+    public boolean isProductDisplayedAsGrid() {
         return searchResultsBlock.checkClassPresenceInProductComponent(GRID_LAYOUT_CLASS);
     }
 

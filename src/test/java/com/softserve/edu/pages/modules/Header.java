@@ -2,12 +2,9 @@ package com.softserve.edu.pages.modules;
 
 import com.softserve.edu.pages.utils.ConciseAPI;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Header extends ConciseAPI {
-    protected WebDriver driver;
-
     private final String CURRENCY_BY_CSS = ".btn.btn-link.dropdown-toggle";
     private final String MY_ACCOUNT_BY_CSS = ".list-inline .dropdown";
     private final String WISH_LIST_BY_CSS = "#wishlist-total";
@@ -17,8 +14,8 @@ public class Header extends ConciseAPI {
     private final String SEARCH_BUTTON_BY_CSS = ".btn.btn-default.btn-lg";
 
     // TODO use driver from Application class
-    public Header(WebDriver driver) {
-        super(driver);
+    public Header() {
+        super();
         verifyWebElements();
     }
 

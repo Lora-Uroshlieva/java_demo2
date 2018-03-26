@@ -85,7 +85,7 @@ public class BrowserWrapper {
     //browser wrapper-----------------------------------------------------------------
     private WebDriver driver;
 
-    //constructor
+    //constructor-------------------------------------------------------------------------
     public BrowserWrapper(IApplicationSource applicationSource) {
         initWebDriver(applicationSource);
     }

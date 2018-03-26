@@ -3,95 +3,129 @@ package com.softserve.edu.test;
 import com.softserve.edu.data.Categories;
 import com.softserve.edu.data.ProductsLimitOnPage;
 import com.softserve.edu.data.SortingType;
-import com.softserve.edu.pages.HomePage;
+import com.softserve.edu.pages.Application;
 import com.softserve.edu.pages.SearchPage;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class TestSearchPage extends BaseTest {
 
     @Test
-    public void moveToSearchPageTest() {
-        HomePage.load(driver).moveToSearchPage();
-        Assert.assertEquals(driver.getCurrentUrl(),
-                SearchPage.getURL());
+    public void moveToSearchPageFromHomeTest() {
+        SearchPage searchPage = Application
+                .get()
+                .loadHomePage()
+                .moveToSearchPage();
+        String expectedUrl = Application
+                .get()
+                .getApplicationSource()
+                .getSearchPageUrl();
+        Assert.assertEquals(searchPage.getCurrentUrl(), expectedUrl);
     }
 
     @Test
-    public void loadPageTest() throws InterruptedException {
-        SearchPage.load(driver);
-        String expectedUrl = SearchPage.getURL() + "&i=1";
-        Assert.assertEquals(driver.getCurrentUrl(), expectedUrl);
+    public void loadPageTest() {
+        SearchPage searchPage = Application
+                .get()
+                .loadSearchPage();
+        String expectedUrl = Application
+                .get()
+                .getApplicationSource()
+                .getSearchPageUrl();
+        Assert.assertEquals(searchPage.getCurrentUrl(), expectedUrl);
     }
 
-    @Test
-    public void searchMultipleResultTest() {
-        SearchPage searchPage = HomePage.load(driver).searchByKeyword("i");
-        searchPage.makeExtendedSearch("i", Categories.DESCTOPS);
+    @DataProvider
+    public Object[][] extendedSearchProvider() {
+        return new Object[][] {
+                {"i", Categories.DESCTOPS, 15},
+                {"Sony VAIO", Categories.ALL, 1}
+        };
+    }
+
+    @Test(dataProvider = "extendedSearchProvider")
+    public void extendedSearchTest(String keyWord, Categories category, int expectedQuantity) {
+        SearchPage searchPage = Application
+                .get()
+                .loadSearchPage()
+                .makeExtendedSearch(keyWord, category);
         int actual = searchPage.countProductsFound();
-        Assert.assertEquals(actual, 15);
-        Assert.assertTrue(searchPage.isTitleContainKeyword("i"));
-    }
-
-    @Test
-    public void searchSingleResultTest() {
-        SearchPage searchPage = SearchPage.load(driver)
-                .makeExtendedSearch("Sony VAIO", Categories.ALL);
-        int actualCount = searchPage.countProductsFound();
-        Assert.assertEquals(actualCount, 1);
-        String actualName = searchPage
-                .getSearchResultsBlock()
-                .getAllProductComponentsNames()
-                .get(0);
-        Assert.assertEquals(actualName, "Sony VAIO");
+        Assert.assertEquals(actual, expectedQuantity);
+        Assert.assertTrue(searchPage.isTitleContainKeyword(keyWord));
     }
 
     @Test
     public void searchByEmptyFieldTest() {
-        SearchPage searchPage = SearchPage.load(driver)
+        SearchPage searchPage = Application
+                .get()
+                .loadSearchPage()
                 .makeExtendedSearch("", Categories.ALL);
         Assert.assertFalse(searchPage
                 .getSearchResultsBlock()
                 .isProductFound());
     }
 
-    @Test
-    public void sortingByPriceAscTest() throws InterruptedException {
-        SearchPage searchPage = SearchPage.load(driver)
-                .makeExtendedSearch("mac", Categories.ALL);
+    @DataProvider
+    public Object[][] searchForSortingAndSwitchingProvider() {
+        return new Object[][] {
+                {"mac", Categories.ALL}
+        };
+    }
+
+    @Test(dataProvider = "searchForSortingAndSwitchingProvider")
+    public void sortingByPriceAscTest(String keyWord, Categories category) {
+        SearchPage searchPage = Application
+                .get()
+                .loadSearchPage()
+                .makeExtendedSearch(keyWord, category);
         searchPage.sortProducts(SortingType.PRICE_ASC);
-        Thread.sleep(4000);
         Assert.assertTrue(searchPage.isPricesSortedByAsc());
     }
 
-    @Test
-    public void sortingByPriceDescTest() {
-        SearchPage searchPage = SearchPage.load(driver)
-                .makeExtendedSearch("mac", Categories.ALL);
+    @Test(dataProvider = "searchForSortingAndSwitchingProvider")
+    public void sortingByPriceDescTest(String keyWord, Categories category) {
+        SearchPage searchPage = Application
+                .get()
+                .loadSearchPage()
+                .makeExtendedSearch(keyWord, category);
         searchPage.sortProducts(SortingType.PRICE_DESC);
         Assert.assertTrue(searchPage.isPricesSortedByDesc());
     }
 
-    @Test
-    public void switchingToListViewTest() {
-        SearchPage searchPage = SearchPage.load(driver)
-                .makeExtendedSearch("mac", Categories.ALL);
+    @Test(dataProvider = "searchForSortingAndSwitchingProvider")
+    public void switchingToListViewTest(String keyWord, Categories category) {
+        SearchPage searchPage = Application
+                .get()
+                .loadSearchPage()
+                .makeExtendedSearch(keyWord, category);
         searchPage.displayProductsAsList();
-        Assert.assertTrue(searchPage.isProductsDisplayedByList());
+        Assert.assertTrue(searchPage.isProductDisplayedAsList());
     }
 
-    @Test
-    public void switchingToGridViewTest() {
-        SearchPage searchPage = SearchPage.load(driver)
-                .makeExtendedSearch("mac", Categories.ALL);
+    @Test(dataProvider = "searchForSortingAndSwitchingProvider")
+    public void switchingToGridViewTest(String keyWord, Categories category) {
+        SearchPage searchPage = Application
+                .get()
+                .loadSearchPage()
+                .makeExtendedSearch(keyWord, category);
         searchPage.displayProductsAsGrid();
-        Assert.assertTrue(searchPage.isProductsDisplayedByGrid());
+        Assert.assertTrue(searchPage.isProductDisplayedAsGrid());
     }
 
-    @Test
-    public void changeProductsLimitOnPageTest() {
-        SearchPage searchPage = SearchPage.load(driver)
-                .makeExtendedSearch("i", Categories.ALL);
+    @DataProvider
+    public Object[][] changeLimitsProvider() {
+        return new Object[][] {
+                {"i", Categories.ALL}
+        };
+    }
+
+    @Test(dataProvider = "changeLimitsProvider")
+    public void changeProductsLimitOnPageTest(String keyWord, Categories category) {
+        SearchPage searchPage = Application
+                .get()
+                .loadSearchPage()
+                .makeExtendedSearch(keyWord, category);
         Assert.assertEquals(searchPage.countProductsFound(),
                 ProductsLimitOnPage.DEFAULT_LIMIT_15.toInt());
         searchPage.changeProductsLimitOnPage(ProductsLimitOnPage.LIMIT_25);
@@ -99,16 +133,24 @@ public class TestSearchPage extends BaseTest {
                 ProductsLimitOnPage.LIMIT_25.toInt());
     }
 
-    @Test
-    public void goToNextSearchResultsPageTest() {
-        SearchPage searchPage = SearchPage.load(driver)
-                .makeExtendedSearch("i", Categories.ALL)
-                .moveToNextSearchResultsPage();
+    @DataProvider
+    public Object[][] paginationProvider() {
+        return new Object[][] {
+                {"i", Categories.ALL, "Showing 16 to 30 of 32 (3 Pages)"}
+        };
+    }
+
+    @Test(dataProvider = "paginationProvider")
+    public void goToNextSearchResultsPageTest(String keyWord,
+                                              Categories category,
+                                              String expectedPageNumberDescription) {
+        SearchPage searchPage = Application
+                .get()
+                .loadSearchPage()
+                .makeExtendedSearch(keyWord, category);
         Assert.assertEquals(searchPage.countProductsFound(),
                 ProductsLimitOnPage.DEFAULT_LIMIT_15.toInt());
-        String expectedPageNumberDescription = String.format(
-                "Showing %d to %d of %d (%d Pages)",
-                16, 30, 32, 3);
+        searchPage.moveToNextSearchResultsPage();
         Assert.assertEquals(searchPage.getSearchResultsBlock()
                         .getPageNumberDescriptionText(),
                         expectedPageNumberDescription);

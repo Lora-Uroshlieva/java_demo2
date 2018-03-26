@@ -9,15 +9,10 @@ public class HomePage {
     private Header header;
     private FeaturedBlock featuredBlock;
 
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
-        this.header = new Header(this.driver);
-        this.featuredBlock = new FeaturedBlock(this.driver);
-    }
-
-    public static HomePage load(WebDriver driver) {
-        driver.get("http://opencartt.rf.gd/");
-        return new HomePage(driver);
+    public HomePage() {
+        this.driver = Application.get().getBrowser().getDriver();
+        this.header = new Header();
+        this.featuredBlock = new FeaturedBlock();
     }
 
     public Header getHeader() {
@@ -28,23 +23,17 @@ public class HomePage {
         return featuredBlock;
     }
 
-    public void moveToSearchPage() {
+    public SearchPage moveToSearchPage() {
         getHeader().clickSearchButton();
-    }
-
-    //TODO write business logic with Currency enum given as a parameter
-    public HomePage selectCurrency(String currency) {
-        header.clickCurrency();
-        return new HomePage(driver);
+        return new SearchPage();
     }
 
     public SearchPage searchByKeyword(String keyword) {
         header.clearSearchField();
         header.sendTextToSearchField(keyword);
         header.clickSearchButton();
-        return new SearchPage(driver);
+        return new SearchPage();
     }
-
 
     /* TODO implement next methods:
     clickLogo()
@@ -56,5 +45,4 @@ public class HomePage {
     checkShoppingCart()
     selectProductsCategory()
      */
-
 }
