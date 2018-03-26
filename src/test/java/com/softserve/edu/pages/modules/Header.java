@@ -33,7 +33,7 @@ public class Header extends ConciseAPI {
     }
 
     public WebElement getCurrency() {
-        return waitElementVisibleByCss(CURRENCY_BY_CSS);
+        return $(CURRENCY_BY_CSS);
     }
 
     public String getCurrencyText() {
@@ -45,7 +45,7 @@ public class Header extends ConciseAPI {
     }
 
     public WebElement getMyAccount() {
-        return waitElementVisibleByCss(MY_ACCOUNT_BY_CSS);
+        return $(MY_ACCOUNT_BY_CSS);
     }
 
     public void clickMyAccount() {
@@ -53,7 +53,7 @@ public class Header extends ConciseAPI {
     }
 
     public WebElement getWishList() {
-        return waitElementVisibleByCss(WISH_LIST_BY_CSS);
+        return $(WISH_LIST_BY_CSS);
     }
 
     public void clickWishList() {
@@ -61,7 +61,7 @@ public class Header extends ConciseAPI {
     }
 
     public WebElement getShoppingCart() {
-        return waitElementVisibleByCss(SHOPPING_CART_BY_CSS);
+        return $(SHOPPING_CART_BY_CSS);
     }
 
     public void clickShoppingCart() {
@@ -69,7 +69,7 @@ public class Header extends ConciseAPI {
     }
 
     public WebElement getCheckout() {
-        return waitElementVisibleByCss(CHECKOUT_BY_CSS);
+        return $(CHECKOUT_BY_CSS);
     }
 
     public void clickCheckout() {
@@ -77,7 +77,7 @@ public class Header extends ConciseAPI {
     }
 
     public WebElement getSearchField() {
-        return waitElementVisibleByCss(SEARCH_FIELD_BY_CSS);
+        return $(SEARCH_FIELD_BY_CSS);
     }
 
     public void clearSearchField() {
@@ -97,7 +97,7 @@ public class Header extends ConciseAPI {
     }
 
     public WebElement getSearchButton() {
-        return waitElementVisibleByCss(SEARCH_BUTTON_BY_CSS);
+        return $(SEARCH_BUTTON_BY_CSS);
     }
 
     public void clickSearchButton() {

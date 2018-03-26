@@ -17,25 +17,19 @@ public class ConciseAPI {
         this.myWait = new WebDriverWait(this.driver, 10);
     }
 
-    //TODO refactor
-    public WebElement waitElementVisibleByCss(String cssSelector) {
+    public WebElement $(String cssSelector) {
         return myWait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.cssSelector(cssSelector)));
     }
 
-    public WebElement waitElementVisibleById(String idSelector) {
-        return myWait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.id(idSelector)));
-    }
-
-    public WebElement waitElementVisibleByXpath(String xpath) {
-        return myWait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath(xpath)));
-    }
-
-    public List<WebElement> waitAllElementsVisibleByCss(String cssSelector) {
+    public List<WebElement> $$(String cssSelector) {
         return myWait.until(ExpectedConditions
                 .visibilityOfAllElementsLocatedBy(By.cssSelector(cssSelector)));
+    }
+
+    public WebElement findByXpath(String xpath) {
+        return myWait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath(xpath)));
     }
 
     public WebElement findElementInLayoutByCss(WebElement layoutElement, String cssSelector) {

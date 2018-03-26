@@ -18,7 +18,7 @@ public class FeaturedBlock extends ConciseAPI {
 
     private void initProductComponents() {
         productComponents = new ArrayList<ProductComponent>();
-        for (WebElement currentElement: waitAllElementsVisibleByCss(PRODUCT_LAYOUT_BY_CSS)) {
+        for (WebElement currentElement: $$(PRODUCT_LAYOUT_BY_CSS)) {
             productComponents.add(new ProductComponent(driver, currentElement));
         }
     }

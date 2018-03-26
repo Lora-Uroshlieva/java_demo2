@@ -12,13 +12,13 @@ public class ExtendedSearchBlock extends ConciseAPI {
         super(driver);
     }
 
-    private final String SEARCH_FIELD_BY_ID = "input-search";
+    private final String SEARCH_FIELD_BY_CSS = "#input-search";
     private final String CATEGORY_BY_CSS = "#content select.form-control[name='category_id']";
-    private final String SELECT_IN_DESCRIPTIONS_CHECKBOX_BY_ID = "description";
-    private final String SEARCH_BUTTON_BY_ID = "button-search";
+    private final String SELECT_IN_DESCRIPTIONS_CHECKBOX_BY_CSS = "#description";
+    private final String SEARCH_BUTTON_BY_CSS = "#button-search";
 
     public WebElement getSearchField() {
-        return waitElementVisibleById(SEARCH_FIELD_BY_ID);
+        return $(SEARCH_FIELD_BY_CSS);
     }
 
     public ExtendedSearchBlock clearSearchField() {
@@ -32,18 +32,18 @@ public class ExtendedSearchBlock extends ConciseAPI {
     }
 
     public ExtendedSearchBlock selectCategory(Categories category) {
-        Select dropdown = new Select(waitElementVisibleByCss(CATEGORY_BY_CSS));
+        Select dropdown = new Select($(CATEGORY_BY_CSS));
         dropdown.selectByVisibleText(category.toString()); //category is chosen as visible text in html code
         return this;
     }
 
     public ExtendedSearchBlock clickSelectInDescriptionsCheckbox() {
-        waitElementVisibleById(SELECT_IN_DESCRIPTIONS_CHECKBOX_BY_ID).click();
+        $(SELECT_IN_DESCRIPTIONS_CHECKBOX_BY_CSS).click();
         return this;
     }
 
     public SearchPage clickSearchButton() {
-        waitElementVisibleById(SEARCH_BUTTON_BY_ID).click();
+        $(SEARCH_BUTTON_BY_CSS).click();
         return new SearchPage(driver);
     }
 }
