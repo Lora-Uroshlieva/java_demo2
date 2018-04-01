@@ -1,4 +1,4 @@
-package com.softserve.edu.data;
+package data;
 
 public enum Categories {
     ALL("All Categories"),

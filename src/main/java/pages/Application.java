@@ -1,8 +1,8 @@
-package com.softserve.edu.pages;
+package pages;
 
-import com.softserve.edu.data.applications.ApplicationSourceRepository;
-import com.softserve.edu.data.applications.IApplicationSource;
-import com.softserve.edu.pages.utils.BrowserWrapper;
+import data.applications.ApplicationSourceRepository;
+import data.applications.IApplicationSource;
+import pages.utils.BrowserWrapper;
 
 public class Application {
     private static volatile Application instance;

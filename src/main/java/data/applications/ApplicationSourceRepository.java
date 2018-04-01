@@ -1,4 +1,4 @@
-package com.softserve.edu.data.applications;
+package data.applications;
 
 public class ApplicationSourceRepository {
     private ApplicationSourceRepository() {}

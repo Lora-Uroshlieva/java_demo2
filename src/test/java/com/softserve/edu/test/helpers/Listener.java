@@ -1,6 +1,6 @@
 package com.softserve.edu.test.helpers;
 
-import com.softserve.edu.pages.Application;
+import pages.Application;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -27,7 +27,11 @@ public class Listener implements ITestListener {
     public void onTestFailure(ITestResult iTestResult) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss");
         Calendar now = Calendar.getInstance();
-        String projectPath = Paths.get(".").toAbsolutePath().normalize().toString();
+        String projectPath = Paths
+                .get(".")
+                .toAbsolutePath()
+                .normalize()
+                .toString();
         String name = projectPath + "\\screenshots\\"
                 + iTestResult.getName() + "_"
                 + formatter.format(now.getTime()) + ".jpg";

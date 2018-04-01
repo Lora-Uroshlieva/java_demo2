@@ -1,7 +1,7 @@
-package com.softserve.edu.pages.modules;
+package pages.modules;
 
-import com.softserve.edu.pages.utils.ConciseAPI;
-import com.softserve.edu.pages.utils.RegexUtils;
+import pages.utils.ConciseAPI;
+import pages.utils.RegexUtils;
 import org.openqa.selenium.WebElement;
 
 public class ProductComponent extends ConciseAPI {

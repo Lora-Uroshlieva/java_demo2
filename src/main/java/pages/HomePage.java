@@ -1,7 +1,7 @@
-package com.softserve.edu.pages;
+package pages;
 
-import com.softserve.edu.pages.modules.FeaturedBlock;
-import com.softserve.edu.pages.modules.Header;
+import pages.modules.FeaturedBlock;
+import pages.modules.Header;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage {

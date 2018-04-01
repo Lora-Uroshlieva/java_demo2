@@ -1,12 +1,12 @@
-package com.softserve.edu.pages;
+package pages;
 
-import com.softserve.edu.data.Categories;
-import com.softserve.edu.data.ProductsLimitOnPage;
-import com.softserve.edu.data.SortingType;
-import com.softserve.edu.pages.modules.ExtendedSearchBlock;
-import com.softserve.edu.pages.modules.Header;
-import com.softserve.edu.pages.modules.SearchResultsBlock;
-import com.softserve.edu.pages.utils.Helpers;
+import data.Categories;
+import data.ProductsLimitOnPage;
+import data.SortingType;
+import pages.modules.ExtendedSearchBlock;
+import pages.modules.Header;
+import pages.modules.SearchResultsBlock;
+import pages.utils.Helpers;
 import org.openqa.selenium.WebDriver;
 
 public class SearchPage {
@@ -16,17 +16,17 @@ public class SearchPage {
     private SearchResultsBlock searchResultsBlock;
     private final String LIST_LAYOUT_CLASS = "product-list";
     private final String GRID_LAYOUT_CLASS = "product-grid";
-    protected WebDriver driver;
-
-    public SearchResultsBlock getSearchResultsBlock() {
-        return searchResultsBlock;
-    }
+    public WebDriver driver;
 
     public SearchPage() {
         this.driver = Application.get().getBrowser().getDriver();
         this.header = new Header();
         this.extendedSearchBlock = new ExtendedSearchBlock();
         this.searchResultsBlock = new SearchResultsBlock();
+    }
+
+    public SearchResultsBlock getSearchResultsBlock() {
+        return searchResultsBlock;
     }
 
     public SearchPage makeExtendedSearch(String keyWord, Categories category) {

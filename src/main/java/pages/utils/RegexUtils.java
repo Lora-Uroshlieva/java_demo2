@@ -1,7 +1,5 @@
-package com.softserve.edu.pages.utils;
+package pages.utils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

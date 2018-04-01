@@ -1,8 +1,8 @@
-package com.softserve.edu.pages.modules;
+package pages.modules;
 
-import com.softserve.edu.data.Categories;
-import com.softserve.edu.pages.SearchPage;
-import com.softserve.edu.pages.utils.ConciseAPI;
+import data.Categories;
+import pages.SearchPage;
+import pages.utils.ConciseAPI;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 

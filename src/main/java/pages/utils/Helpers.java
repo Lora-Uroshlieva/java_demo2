@@ -1,8 +1,9 @@
-package com.softserve.edu.pages.utils;
+package pages.utils;
 
 import java.util.List;
 
 public class Helpers {
+
     public static boolean isTextEqual(String text1, String text2) {
         return text1.toLowerCase().trim().equals(text2.toLowerCase().trim());
     }

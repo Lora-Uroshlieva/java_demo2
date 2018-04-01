@@ -1,6 +1,6 @@
-package com.softserve.edu.pages.modules;
+package pages.modules;
 
-import com.softserve.edu.pages.utils.ConciseAPI;
+import pages.utils.ConciseAPI;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 

@@ -1,6 +1,6 @@
-package com.softserve.edu.pages.utils;
+package pages.utils;
 
-import com.softserve.edu.data.applications.IApplicationSource;
+import data.applications.IApplicationSource;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;

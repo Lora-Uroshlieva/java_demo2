@@ -1,4 +1,4 @@
-package com.softserve.edu.data;
+package data;
 
 public enum SortingType {
     NAME_ASC("Name (A - Z)"),

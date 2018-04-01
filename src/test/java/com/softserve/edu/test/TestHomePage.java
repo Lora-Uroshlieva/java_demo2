@@ -1,7 +1,7 @@
 package com.softserve.edu.test;
 
-import com.softserve.edu.pages.Application;
-import com.softserve.edu.pages.SearchPage;
+import pages.Application;
+import pages.SearchPage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

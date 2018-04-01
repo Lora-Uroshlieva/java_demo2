@@ -1,4 +1,4 @@
-package com.softserve.edu.data;
+package data;
 
 public enum Currencies {
     EURO("Euro"),

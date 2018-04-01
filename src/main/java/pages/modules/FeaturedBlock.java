@@ -1,7 +1,7 @@
-package com.softserve.edu.pages.modules;
+package pages.modules;
 
-import com.softserve.edu.pages.utils.ConciseAPI;
-import com.softserve.edu.pages.utils.Helpers;
+import pages.utils.ConciseAPI;
+import pages.utils.Helpers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.util.ArrayList;

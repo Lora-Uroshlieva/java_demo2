@@ -1,6 +1,6 @@
-package com.softserve.edu.pages.utils;
+package pages.utils;
 
-import com.softserve.edu.pages.Application;
+import pages.Application;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,9 +37,5 @@ public class ConciseAPI {
     public WebElement findElementInLayoutByCss(WebElement layoutElement, String cssSelector) {
         return myWait.until(ExpectedConditions.visibilityOf(layoutElement
                 .findElement(By.cssSelector(cssSelector))));
-    }
-
-    public String getCurrentUrl() {
-        return driver.getCurrentUrl();
     }
 }

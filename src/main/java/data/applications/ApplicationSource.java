@@ -1,4 +1,4 @@
-package com.softserve.edu.data.applications;
+package data.applications;
 
 public class ApplicationSource implements IApplicationSource {
     private String browserName;
@@ -28,5 +28,21 @@ public class ApplicationSource implements IApplicationSource {
 
     public String getSearchPageUrl() {
         return searchPageUrl;
+    }
+
+    public void setBrowserName(String browserName) {
+        this.browserName = browserName;
+    }
+
+    public void setDriverPath(String driverPath) {
+        this.driverPath = driverPath;
+    }
+
+    public void setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
+    }
+
+    public void setSearchPageUrl(String searchPageUrl) {
+        this.searchPageUrl = searchPageUrl;
     }
 }

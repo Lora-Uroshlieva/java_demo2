@@ -1,8 +1,8 @@
-package com.softserve.edu.pages.modules;
+package pages.modules;
 
-import com.softserve.edu.data.ProductsLimitOnPage;
-import com.softserve.edu.data.SortingType;
-import com.softserve.edu.pages.utils.RegexUtils;
+import data.ProductsLimitOnPage;
+import data.SortingType;
+import pages.utils.RegexUtils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
