@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.internal.TestResult;
 import org.testng.internal.thread.ThreadTimeoutException;
 import pages.Application;
 import com.softserve.edu.test.helpers.Listener;
@@ -45,7 +44,7 @@ public class BaseTest {
                 msg += "\t" + throwable.toString();
                 if (!(throwable instanceof ThreadTimeoutException)) {
                     for (StackTraceElement e : throwable.getStackTrace()) {
-                        msg += "\n        at " + e.toString();
+                        msg = msg + "\n        at " + e.toString();
                     }
                 }
             }

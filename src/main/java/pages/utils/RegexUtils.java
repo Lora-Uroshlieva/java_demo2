@@ -15,8 +15,17 @@ public final class RegexUtils {
         return text.replace(",", "");
     }
 
+    public static boolean isTextMatches(String pattern, String text) {
+        Matcher matcher = Pattern.compile(pattern).matcher(text);
+        return matcher.matches();
+    }
+
+    public static boolean isDoubleMatches(String text) {
+        return isTextMatches(PATTERN_UNSIGNED_DOUBLE, text);
+    }
+
     public static String extractFirstString(String pattern, String text) {
-        String result = new String();
+        String result = "";
         Matcher matcher = Pattern.compile(pattern).matcher(text);
         if (matcher.find()) {
             result = text.substring(matcher.start(), matcher.end());
