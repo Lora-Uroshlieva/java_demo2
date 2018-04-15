@@ -2,9 +2,12 @@ package pages;
 
 import data.applications.ApplicationSourceRepository;
 import data.applications.IApplicationSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pages.utils.BrowserWrapper;
 
 public class Application {
+    public static final Logger logger = LoggerFactory.getLogger(Application.class);
     private static volatile Application instance;
     private IApplicationSource applicationSource;
     private BrowserWrapper browser;
@@ -14,6 +17,7 @@ public class Application {
     }
 
     public static Application get() {
+//        logger.info(Application.instance.getClass().getEnclosingMethod().getName());
         return get(null);
     }
 
