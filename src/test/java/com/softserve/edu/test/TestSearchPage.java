@@ -15,8 +15,6 @@ import org.testng.annotations.Test;
 
 public class TestSearchPage extends BaseTest {
 
-    //test descriptions
-
     @Test()
     @Severity(SeverityLevel.CRITICAL)
     @Description("Test opens home page and moves to search page by clicking search button")
@@ -31,7 +29,10 @@ public class TestSearchPage extends BaseTest {
                 .getApplicationSource()
                 .getSearchPageUrl();
         Assert.assertEquals(searchPage.getCurrentUrl(), expectedUrl);
+
         logger.info("moveToSearchPageFromHomeTest - url - " + searchPage.getCurrentUrl());
+//        logger.info(testResult.getName());
+
     }
 
     @Test
