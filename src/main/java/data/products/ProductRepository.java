@@ -1,6 +1,8 @@
 package data.products;
 
 import data.Currencies;
+import pages.utils.CSVReader;
+import pages.utils.ExcelReader;
 
 import java.util.List;
 
@@ -20,20 +22,20 @@ public final class ProductRepository {
                 .buildProduct();
     }
 
-//    public static List<IProduct> fromCsvProducts() {
-//        return fromCsvProducts("products.csv");
-//    }
-//
-//    public static List<IProduct> fromCsvProducts(String filename) {
-//        return Product.getByList(new CSVReader(filename).getAllCells());
-//    }
-//
-//    public static List<IProduct> fromExcelProducts() {
-//        return fromExcelProducts("products.xlsx");
-//    }
-//
-//    public static List<IProduct> fromExcelProducts(String filename) {
-//        return Product.getByList(new ExcelReader(filename).getAllCells());
-//    }
+    public static List<IProduct> fromCsvProducts() {
+        return fromCsvProducts("products.csv");
+    }
+
+    public static List<IProduct> fromCsvProducts(String filename) {
+        return Product.getByList(new CSVReader(filename).getAllCells());
+    }
+
+    public static List<IProduct> fromExcelProducts() {
+        return fromExcelProducts("products.xlsx");
+    }
+
+    public static List<IProduct> fromExcelProducts(String filename) {
+        return Product.getByList(new ExcelReader(filename).getAllCells());
+    }
 
 }
