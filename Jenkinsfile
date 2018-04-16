@@ -19,19 +19,26 @@ node {
          bat(/mvn checkstyle:checkstyle/)
       }
    }
-   stage("Execute e2e tests") {
-       // Execute selenium tests
-      if (isUnix()) {
-         sh "mvn clean test -Ddatabase.password=1234"
-      } else {
-         bat(/mvn clean test -Ddatabase.password=1234/)
-      }
+   try {
+    stage("Execute e2e tests") {
+           // Execute selenium tests
+          if (isUnix()) {
+             sh "mvn clean test -Ddatabase.password=1234"
+          } else {
+             bat(/mvn clean test -Ddatabase.password=1234/)
+          }
+       }
+   } catch (err) {
+           currentBuild.result = 'FAILED'
+           throw err
    }
+   stage ('Allure Report') {
     allure([
-                    includeProperties: false,
-                    jdk: '',
-                    properties: [],
-                    reportBuildPolicy: 'ALWAYS',
-                    results: [[path: 'target/allure-results']]
-            ])
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'target/allure-results']]
+                ])
+   }
 }
