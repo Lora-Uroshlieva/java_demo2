@@ -30,7 +30,6 @@ node {
        }
    } catch (err) {
            currentBuild.result = 'FAILED'
-           throw err
    }
    stage ('Allure Report') {
     allure([
