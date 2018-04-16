@@ -31,8 +31,6 @@ public class TestSearchPage extends BaseTest {
         Assert.assertEquals(searchPage.getCurrentUrl(), expectedUrl);
 
         logger.info("moveToSearchPageFromHomeTest - url - " + searchPage.getCurrentUrl());
-//        logger.info(testResult.getName());
-
     }
 
     @Test

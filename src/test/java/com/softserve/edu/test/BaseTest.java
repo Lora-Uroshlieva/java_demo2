@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.internal.TestResult;
+import org.testng.internal.thread.ThreadTimeoutException;
 import pages.Application;
 import com.softserve.edu.test.helpers.Listener;
 import org.testng.annotations.AfterClass;
@@ -31,6 +31,24 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void afterMethod(ITestResult testResult) {
-        System.out.println("**********" + testResult + "\n" + testResult.getMethod());
+        String methodName = testResult.getMethod().getMethodName();
+        boolean testPassed = testResult.getStatus() == ITestResult.SUCCESS;
+        String msg = "\n";
+
+        if(testPassed) {
+            logger.info(methodName + " - test passed");
+        } else {
+            logger.error(methodName + " - test failed");
+            Throwable throwable = testResult.getThrowable();
+            if (throwable != null) {
+                msg += "\t" + throwable.toString();
+                if (!(throwable instanceof ThreadTimeoutException)) {
+                    for (StackTraceElement e : throwable.getStackTrace()) {
+                        msg = msg + "\n        at " + e.toString();
+                    }
+                }
+            }
+            logger.error(msg);
+        }
     }
 }

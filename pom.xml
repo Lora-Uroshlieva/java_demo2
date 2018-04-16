@@ -244,6 +244,7 @@
                 <version>${maven.compiler.plugin.version}</version>
                 <configuration>
                     <source>${jdk.source.version}</source>
+                    <executable>C:\Program Files\Java\jdk1.8.0_161\bin\javac.exe</executable>
                     <target>${jdk.compiler.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
