@@ -1,6 +1,6 @@
 node {
    stage('Clone the project') { // for display purposes
-      // Get some code from a GitHub repository
+      // Get code from a GitHub repository
       git 'https://github.com/Lora-Uroshlieva/java_demo2.git'
    }
    stage("Install dependencies") {
@@ -20,7 +20,7 @@ node {
       }
    }
    try {
-    stage("Execute e2e tests") {
+    stage("Execute tests") {
            // Execute selenium tests
           if (isUnix()) {
              sh "mvn clean test -Ddatabase.password=1234"
@@ -33,11 +33,11 @@ node {
    }
    stage ('Allure Report') {
     allure([
-                        includeProperties: false,
-                        jdk: '',
-                        properties: [],
-                        reportBuildPolicy: 'ALWAYS',
-                        results: [[path: 'target/allure-results']]
-                ])
+            includeProperties: false,
+            jdk: '',
+            properties: [],
+            reportBuildPolicy: 'ALWAYS',
+            results: [[path: 'target/allure-results']]
+            ])
    }
 }
