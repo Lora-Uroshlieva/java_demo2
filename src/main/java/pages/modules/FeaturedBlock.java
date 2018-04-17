@@ -1,5 +1,7 @@
 package pages.modules;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pages.utils.ConciseAPI;
 import pages.utils.Helpers;
 import org.openqa.selenium.By;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FeaturedBlock extends ConciseAPI {
+    public static final Logger logger = LoggerFactory.getLogger(FeaturedBlock.class);
     private List<ProductComponent> productComponents;
     private final String PRODUCT_LAYOUT_BY_CSS = ".product-layout";
 
@@ -63,8 +66,7 @@ public class FeaturedBlock extends ConciseAPI {
         for (ProductComponent current: products) {
             prices.add(current.getPriceAmount());
         }
-        System.out.println("Prices of products present on page: ");
-        System.out.println(prices);
+        logger.info("Prices of products present on page: " + prices);
         return prices;
     }
 

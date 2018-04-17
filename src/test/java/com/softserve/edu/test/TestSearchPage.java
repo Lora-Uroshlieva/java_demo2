@@ -33,7 +33,7 @@ public class TestSearchPage extends BaseTest {
         logger.info("moveToSearchPageFromHomeTest - url - " + searchPage.getCurrentUrl());
     }
 
-    @Test
+    @Test(enabled = false)
     @Severity(SeverityLevel.NORMAL)
     @Description( "Test loads search page by URL")
     @Story("SearchPage loading")

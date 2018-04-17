@@ -1,5 +1,7 @@
 package com.softserve.edu.test.helpers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pages.Application;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -7,12 +9,15 @@ import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import pages.modules.FeaturedBlock;
+
 import java.io.File;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Listener implements ITestListener {
+    public static final Logger logger = LoggerFactory.getLogger(Listener.class);
     @Override
     public void onTestStart(ITestResult iTestResult) {
 
@@ -64,10 +69,10 @@ public class Listener implements ITestListener {
             TakesScreenshot ts=(TakesScreenshot) Application.get().getBrowser().getDriver();
             File source=ts.getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(source, new File(screenshotName));
-            System.out.println("Screenshot taken");
+            logger.info("Screenshot taken");
         }
         catch (Exception e) {
-            System.out.println("Exception while taking screenshot " + e.getMessage());
+            logger.error("Exception while taking screenshot " + e.getMessage());
         }
     }
 }
