@@ -2,6 +2,7 @@ package pages;
 
 import data.applications.ApplicationSourceRepository;
 import data.applications.IApplicationSource;
+import io.qameta.allure.Step;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.utils.BrowserWrapper;
@@ -61,6 +62,7 @@ public class Application {
         return new HomePage();
     }
 
+    @Step
     public SearchPage loadSearchPage() {
         getBrowser().getDriver().get(applicationSource.getSearchPageUrl());
         return new SearchPage();

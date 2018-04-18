@@ -11,8 +11,8 @@ public class ApplicationSourceRepository {
         return new ApplicationSource(
                 "ChromeTemporary",
                 "C:/Program Files (x86)/Google/Chrome/Application/chromedriver.exe",
-                "http://192.168.1.37/opencart/upload/",
-                "http://192.168.1.37/opencart/upload/index.php?route=product/search");
+                "http://opencartt.rf.gd",
+                "http://opencartt.rf.gd/index.php?route=product/search");
     }
 
     public static IApplicationSource OpencarttFirefox() {
